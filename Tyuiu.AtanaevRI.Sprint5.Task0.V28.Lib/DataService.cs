@@ -7,21 +7,21 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task0.V28.Lib
     {
         public string SaveToFileTextData(int x)
         {
-            
-              
-                double result = Math.Pow(x, 3) + 2 * Math.Pow(x, 2) + 5 * x + 4;
 
-                string formattedResult = result.ToString("F3", CultureInfo.InvariantCulture);
 
-                
-                string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask0.txt");
+            double result = Math.Pow(x, 3) + 2 * Math.Pow(x, 2) + 5 * x + 4;
 
-                File.WriteAllText(path, formattedResult);
+            string formattedResult = result.ToString("F3", CultureInfo.InvariantCulture);
 
-                return path;
-            }
+
+            string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask0.txt");
+
+            File.WriteAllText(path, formattedResult);
+
+            return path;
+
         }
     }
-
+}
   
 

@@ -23,12 +23,12 @@ Console.WriteLine("*************************************************************
 Console.WriteLine("* РЕЗУЛЬТАТ:                                                              *");
 Console.WriteLine("***************************************************************************");
 DataService ds = new DataService();
-                int x = 3;
+ int x = 3;
 
-                string path = ds.SaveToFileTextData(x);
+  string path = ds.SaveToFileTextData(x);
 
             
-                string result = File.ReadAllText(path);
+  string result = File.ReadAllText(path);
 
             Console.WriteLine("Результат: " + result);
             Console.WriteLine("Файл сохранён: " + path);
