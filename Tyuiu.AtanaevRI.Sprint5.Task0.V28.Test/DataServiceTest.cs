@@ -12,7 +12,7 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task0.V28.Test
               
                 DataService ds = new DataService();
                 int x = 3;
-                string expectedResult = "7.348"; 
+                string expectedResult = "7,348"; 
                 string expectedPath = Path.Combine(Path.GetTempPath(), "OutPutFileTask0.txt");
 
                
