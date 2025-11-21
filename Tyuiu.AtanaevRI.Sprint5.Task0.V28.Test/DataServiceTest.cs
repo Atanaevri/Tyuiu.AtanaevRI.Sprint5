@@ -9,21 +9,20 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task0.V28.Test
         {
            
             {
-                // - подготовка данных
+              
                 DataService ds = new DataService();
                 int x = 3;
-                string expectedResult = "64.000"; // Ожидаемый результат при x=3
+                string expectedResult = "64.000"; 
                 string expectedPath = Path.Combine(Path.GetTempPath(), "OutPutFileTask0.txt");
 
-                //  - выполнение действия
+               
                 string path = ds.SaveToFileTextData(x);
                 string actualResult = File.ReadAllText(path);
 
-                // Assert - проверка результатов
-                Assert.AreEqual(expectedPath, path); // Проверяем путь
-                Assert.AreEqual(expectedResult, actualResult); // Проверяем содержимое
-                Assert.IsTrue(File.Exists(path)); // Проверяем что файл создан
-
+               
+                Assert.AreEqual(expectedPath, path);
+                Assert.AreEqual(expectedResult, actualResult); 
+                Assert.IsTrue(File.Exists(path)); 
                 File.Delete(path);
           
             }
