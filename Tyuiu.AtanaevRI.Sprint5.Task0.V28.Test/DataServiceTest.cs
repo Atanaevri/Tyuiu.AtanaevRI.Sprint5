@@ -22,7 +22,7 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task0.V28.Test
                
                 Assert.AreEqual(expectedPath, path);
                 Assert.AreEqual(expectedResult, actualResult); 
-                Assert.IsTrue(File.Exists(path)); 
+                Assert.IsTrue(File.Exists(path));
                 File.Delete(path);
           
             }
