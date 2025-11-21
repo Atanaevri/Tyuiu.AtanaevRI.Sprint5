@@ -9,7 +9,7 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task0.V28.Lib
         {
 
 
-            double result = Math.Pow(x, 3) + 2 * Math.Pow(x, 2) + 5 * x + 4;
+            double result = x * Math.Sqrt(x + 3);
 
             string formattedResult = result.ToString("F3", CultureInfo.InvariantCulture);
 
