@@ -7,9 +7,9 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task0.V28.Test
         [TestMethod]
         public void TestMethod1()
         {
-           
-            
-              
+
+
+
                 DataService ds = new DataService();
                 int x = 3;
                 string expectedResult = "7,348"; 
