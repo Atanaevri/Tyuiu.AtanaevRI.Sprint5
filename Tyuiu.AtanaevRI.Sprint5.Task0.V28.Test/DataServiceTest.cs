@@ -8,7 +8,7 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task0.V28.Test
         public void TestMethod1()
         {
            
-            {
+            
               
                 DataService ds = new DataService();
                 int x = 3;
@@ -25,7 +25,7 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task0.V28.Test
                 Assert.IsTrue(File.Exists(path));
                 File.Delete(path);
           
-            }
+            
         }
     }
 }
