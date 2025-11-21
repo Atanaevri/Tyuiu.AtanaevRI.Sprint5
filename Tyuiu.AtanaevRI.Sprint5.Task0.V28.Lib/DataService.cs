@@ -11,7 +11,7 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task0.V28.Lib
 
             double result = x * Math.Sqrt(x + 3);
 
-            string formattedResult = result.ToString("F3", CultureInfo.InvariantCulture);
+            string formattedResult = result.ToString("F3");
 
 
             string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask0.txt");
