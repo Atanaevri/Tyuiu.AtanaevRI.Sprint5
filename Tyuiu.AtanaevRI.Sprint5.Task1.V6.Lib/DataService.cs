@@ -1,32 +1,32 @@
-﻿using tyuiu.cources.programming.interfaces.Sprint5;
+﻿using System.Globalization;
+using System.Text;
+using tyuiu.cources.programming.interfaces.Sprint5;
 namespace Tyuiu.AtanaevRI.Sprint5.Task1.V6.Lib
 {
     public class DataService : ISprint5Task1V6
     {
         public string SaveToFileTextData(int startValue, int stopValue)
         {
-           
-                string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask1.txt");
 
-                using (StreamWriter writer = new StreamWriter(path))
+
+        
+            string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask1.txt");
+
+            using (StreamWriter writer = new StreamWriter(path, false, Encoding.Default))
+            {
+                for (int x = startValue; x <= stopValue; x++)
                 {
-                    writer.WriteLine("╔═══════╦═════════════╗");
-                    writer.WriteLine("║   x   ║    f(x)     ║");
-                    writer.WriteLine("╠═══════╬═════════════╣");
-
-                    for (int x = startValue; x <= stopValue; x++)
-                    {
-                        double result = CalculateFunction(x);
-                        writer.WriteLine($"║  {x,3}  ║  {result,9:F2}  ║");
-                    }
-
-                    writer.WriteLine("╚═══════╩═════════════╝");
+                    double result = CalculateFunction(x);
+                    // Форматируем число с двумя знаками после запятой и с запятой как разделителем
+                    string formattedResult = result.ToString("F2", CultureInfo.GetCultureInfo("ru-RU"));
+                    writer.WriteLine(formattedResult);
                 }
-
-                return path;
             }
 
-            private double CalculateFunction(int x)
+            return path;
+        }
+
+        private double CalculateFunction(int x)
             {
                 try
                 {
