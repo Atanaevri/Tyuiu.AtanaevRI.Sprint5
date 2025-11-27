@@ -18,7 +18,7 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task1.V6.Lib
                         string formattedResult = result.ToString("0.00", CultureInfo.GetCultureInfo("ru-RU"));
                         if (formattedResult.EndsWith(",00"))
                         {
-                            formattedResult = formattedResult.Substring(0, formattedResult.Length - 3);
+                        formattedResult = formattedResult.Substring(0, formattedResult.Length - 3);
                         }
                         writer.WriteLine(formattedResult);
                     }
