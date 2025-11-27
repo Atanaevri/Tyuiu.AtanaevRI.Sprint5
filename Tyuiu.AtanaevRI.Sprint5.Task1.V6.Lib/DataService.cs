@@ -3,36 +3,36 @@ using System.Text;
 using tyuiu.cources.programming.interfaces.Sprint5;
 namespace Tyuiu.AtanaevRI.Sprint5.Task1.V6.Lib
 {
-    public class DataService : ISprint5Task1V6
-    {
-        public string SaveToFileTextData(int startValue, int stopValue)
+   
+        public class DataService : ISprint5Task1V6
         {
-
-
-        
-            string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask1.txt");
-
-            using (StreamWriter writer = new StreamWriter(path, false, Encoding.Default))
+            public string SaveToFileTextData(int startValue, int stopValue)
             {
-                for (int x = startValue; x <= stopValue; x++)
+                string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask1.txt");
+
+                using (StreamWriter writer = new StreamWriter(path, false, Encoding.Default))
                 {
-                    double result = CalculateFunction(x);
-                    // Форматируем число с двумя знаками после запятой и с запятой как разделителем
-                    string formattedResult = result.ToString("F2", CultureInfo.GetCultureInfo("ru-RU"));
-                    writer.WriteLine(formattedResult);
+                    for (int x = startValue; x <= stopValue; x++)
+                    {
+                        double result = CalculateFunction(x);
+                        string formattedResult = result.ToString("0.00", CultureInfo.GetCultureInfo("ru-RU"));
+                        if (formattedResult.EndsWith(",00"))
+                        {
+                            formattedResult = formattedResult.Substring(0, formattedResult.Length - 3);
+                        }
+                        writer.WriteLine(formattedResult);
+                    }
                 }
+
+                return path;
             }
 
-            return path;
-        }
-
-        private double CalculateFunction(int x)
+            private double CalculateFunction(int x)
             {
                 try
                 {
-                    
                     double term1 = Math.Cos(x);
-                    double term2 = (4 * x) / 2;  // 2x
+                    double term2 = (4 * x) / 2; 
                     double term3 = Math.Sin(x) * 3 * x;
 
                     return term1 + term2 - term3;
@@ -44,6 +44,3 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task1.V6.Lib
             }
         }
     }
-
-    
-
