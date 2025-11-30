@@ -42,4 +42,17 @@ Console.WriteLine("* РЕЗУЛЬТАТ:                                        
 Console.WriteLine("***************************************************************************");
 DataService ds = new DataService();
 string res = ds.SaveToFileTextData(array);
-Console.WriteLine("Файл:" + res);
+
+           
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "OutPutFileTask2.csv");
+
+            File.WriteAllText(path, res);
+
+Console.WriteLine("\nПреобразованный массив:");
+Console.WriteLine(res.Replace(";", "; "));
+
+Console.WriteLine($"\nФайл сохранен: {path}");
+Console.ReadKey();
+        
+    
+

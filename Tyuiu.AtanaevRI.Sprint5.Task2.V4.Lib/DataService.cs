@@ -1,4 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
+﻿
 using tyuiu.cources.programming.interfaces.Sprint5;
 namespace Tyuiu.AtanaevRI.Sprint5.Task2.V4.Lib
 {
@@ -8,34 +8,49 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task2.V4.Lib
         {
             string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask2.csv";
             
-            FileInfo fileinfo = new FileInfo(path);
-            bool fileExists = fileinfo.Exists;
-            if ( fileExists)
+            
+            
+
+            FileInfo fileInfo = new FileInfo(path);
+            bool fileExists = fileInfo.Exists;
+            if (fileExists)
             {
                 File.Delete(path);
             }
 
+            
+         
+                int rows = matrix.GetLength(0);
+                int cols = matrix.GetLength(1);
 
-            int rows = matrix.GetUpperBound(0);
-            int cols = matrix.GetUpperBound(1);
-            for (int i = 0;i < rows; i++)
-            {
-                for (int j = 0;j < cols;j++)
+                string data = "";
+
+                for (int i = 0; i < rows; i++)
                 {
-                    if (matrix[i,j] > 0 )
+                    for (int j = 0; j < cols; j++)
                     {
-                        matrix[i, j] = 1;
+                        if (matrix[i, j] > 0)
+                        {
+                            data += "1";
+                        }
+                        else
+                        {
+                            data += "0";
+                        }
+
+                        if (j < cols - 1)
+                        {
+                            data += ";";
+                        }
                     }
-                    if (matrix[i,j] < 0)
+
+                    if (i < rows - 1)
                     {
-                        matrix[i,j] = 0;
+                        data += Environment.NewLine;
                     }
                 }
-            }
-            return path;
 
-            
+                return data;
+            }
         }
-        
     }
-}
