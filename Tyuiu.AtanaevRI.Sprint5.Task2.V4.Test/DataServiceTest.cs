@@ -1,5 +1,5 @@
-﻿using Tyuiu.AtanaevRI.Sprint5.Task1.V6.Lib;
-namespace Tyuiu.AtanaevRI.Sprint5.Task1.V6.Test
+﻿using Tyuiu.AtanaevRI.Sprint5.Task2.V4.Lib;
+namespace Tyuiu.AtanaevRI.Sprint5.Task2.V4.Test
 {
     [TestClass]
     public sealed class DataServiceTest
@@ -7,12 +7,11 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task1.V6.Test
         [TestMethod]
         public void TestMethod1()
         {
-            string path = @"C:\Users\atana\AppData\Local\Temp\OutPutFileTask1.txt";
+            string path = @"C:\Users\atana\AppData\Local\Temp\OutPutFileTask2.csv";
             FileInfo fileinfo = new FileInfo(path);
             bool fileExists = fileinfo.Exists;
             bool wait = true;
             Assert.AreEqual(wait, fileExists);
-
         }
     }
 }
