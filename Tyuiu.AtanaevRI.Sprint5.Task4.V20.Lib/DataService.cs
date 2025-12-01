@@ -10,7 +10,7 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task4.V20.Lib
             double value = Convert.ToDouble(strx, CultureInfo.InvariantCulture);
 
             
-            double num1 = Math.Round(value, 2);
+            double num1 = Math.Pow(value, 2);
             double num2 = Math.Sin(value);
             double y = num1 / num2;
             double res = Math.Round(Math.Pow(y, 3), 3);
