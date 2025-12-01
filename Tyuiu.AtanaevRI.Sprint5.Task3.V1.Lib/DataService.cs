@@ -11,10 +11,9 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task3.V1.Lib
             double num1 = Math.Pow(x, 3) - 8;
             double num2 = 2 * Math.Pow(x, 2);
             double num3 = num1 / num2;
-            using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.OpenOrCreate), Encoding.UTF8))
-            {
-                writer.Write(BitConverter.GetBytes(num3));
-            }
+            string resultString = num3.ToString("F3", System.Globalization.CultureInfo.InvariantCulture);
+            File.WriteAllText(path, resultString, Encoding.UTF8);
+
             return path;
         }
         
