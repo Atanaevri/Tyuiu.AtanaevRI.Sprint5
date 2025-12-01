@@ -17,7 +17,7 @@ Console.WriteLine("*                                           *");
 Console.WriteLine("*              Исходные данные                                                           *");
 Console.WriteLine("***************************************************************************");
 
-string path = $@"{Directory.GetCurrentDirectory()}\InPutDataFileTask4V20";
+string path = Path.Combine(Path.GetTempPath(),"InPutDataFileTask4V20");
 Console.WriteLine("Данные находятся в файле" + path);
 
 
