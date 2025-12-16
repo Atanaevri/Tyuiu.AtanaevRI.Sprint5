@@ -9,8 +9,7 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task5.V12.Lib
     {
         public double LoadFromDataFile(string path)
         {
-            double sumPositive = 0;
-            double sumNegative = 0;
+            double sum = 0;
 
             using (StreamReader reader = new StreamReader(path))
             {
@@ -23,28 +22,19 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task5.V12.Lib
 
                     if (double.TryParse(line.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
                     {
-                        double rounded = Math.Round(number, 3);
-
-                        bool isInteger = Math.Abs(rounded % 1) < 0.0001;
-
-                        if (isInteger)
+                        // Check if the number is essentially an integer (within a small tolerance)
+                        double roundedToNearestInteger = Math.Round(number);
+                        if (Math.Abs(number - roundedToNearestInteger) < 0.000001)
                         {
-                            long intValue = (long)Math.Round(rounded);
-
-                            if (intValue > 0)
-                            {
-                                sumPositive += intValue;
-                            }
-                            else if (intValue < 0)
-                            {
-                                sumNegative += intValue;
-                            }
+                            // It's an integer
+                            long intValue = (long)roundedToNearestInteger;
+                            sum += intValue;
                         }
                     }
                 }
             }
 
-            return sumPositive + sumNegative;
+            return sum;
         }
     }
 }
