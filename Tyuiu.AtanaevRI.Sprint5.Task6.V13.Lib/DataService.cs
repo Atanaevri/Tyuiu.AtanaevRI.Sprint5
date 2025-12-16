@@ -8,7 +8,7 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task6.V13.Lib
     {
         public int LoadFromDataFile(string path)
         {
-            string text = File.ReadAllText(path, Encoding.Default);
+            string text = File.ReadAllText(path, Encoding.UTF8);
             int count = 0;
 
             for (int i = 0; i < text.Length - 1; i++)
