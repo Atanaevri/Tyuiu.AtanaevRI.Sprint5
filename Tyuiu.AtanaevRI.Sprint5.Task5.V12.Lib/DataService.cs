@@ -9,8 +9,8 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task5.V12.Lib
     {
         public double LoadFromDataFile(string path)
         {
-            long positiveSum = 0;
-            long negativeSum = 0;
+            double positiveSum = 0;
+            double negativeSum = 0;
 
             using (StreamReader reader = new StreamReader(path))
             {
@@ -21,38 +21,31 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task5.V12.Lib
                         continue;
 
                     line = line.Trim();
+                    line = line.Replace(',', '.');
 
-                    string normalizedLine = line.Replace(',', '.');
-
-                    if (long.TryParse(normalizedLine, NumberStyles.Integer, CultureInfo.InvariantCulture, out long intValue))
+                    if (double.TryParse(line, NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
                     {
-                        if (intValue > 0)
-                            positiveSum += intValue;
-                        else if (intValue < 0)
-                            negativeSum += intValue;
-                    }
-                    else if (double.TryParse(normalizedLine, NumberStyles.Float, CultureInfo.InvariantCulture, out double doubleValue))
-                    {
-                        double rounded = Math.Round(doubleValue, 3, MidpointRounding.AwayFromZero);
+                        double rounded = Math.Round(number, 3);
 
-                        double diff = Math.Abs(rounded - Math.Round(rounded));
-                        if (diff < 0.0001)
+                        if (Math.Abs(Math.Round(rounded) - rounded) < 0.0001)
                         {
-                            long value = (long)Math.Round(rounded);
-                            if (value > 0)
-                                positiveSum += value;
-                            else if (value < 0)
-                                negativeSum += value;
+                            long integerValue = (long)Math.Round(rounded);
+
+                            if (integerValue > 0)
+                            {
+                                positiveSum += integerValue;
+                            }
+                            else if (integerValue < 0)
+                            {
+                                negativeSum += Math.Abs(integerValue);
+                            }
                         }
                     }
                 }
             }
 
-            long sumPositive = positiveSum;
-            long sumNegative = Math.Abs(negativeSum);
-            long difference = sumPositive - sumNegative;
-
-            return (double)difference;
+            double result = positiveSum - negativeSum;
+            return result;
         }
     }
 }
