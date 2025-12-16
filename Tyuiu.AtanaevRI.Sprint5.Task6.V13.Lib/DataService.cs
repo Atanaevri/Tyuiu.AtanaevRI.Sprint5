@@ -8,15 +8,11 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task6.V13.Lib
     {
         public int LoadFromDataFile(string path)
         {
-            // Читаем весь текст из файла
             string text = File.ReadAllText(path, Encoding.Default);
-
             int count = 0;
 
-            // Проходим по строке, проверяя каждую пару символов
             for (int i = 0; i < text.Length - 1; i++)
             {
-                // Проверяем, являются ли текущий и следующий символы буквой 'с' (кириллической)
                 if (text[i] == 'с' && text[i + 1] == 'с')
                 {
                     count++;
