@@ -9,43 +9,39 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task5.V12.Lib
     {
         public double LoadFromDataFile(string path)
         {
+            string content = File.ReadAllText(path);
+            string[] lines = content.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
             double positiveSum = 0;
             double negativeSum = 0;
 
-            using (StreamReader reader = new StreamReader(path))
+            foreach (string line in lines)
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                string trimmedLine = line.Trim();
+                if (string.IsNullOrEmpty(trimmedLine))
+                    continue;
+
+                string normalizedLine = trimmedLine.Replace(',', '.');
+
+                if (double.TryParse(normalizedLine, NumberStyles.Any, CultureInfo.InvariantCulture, out double value))
                 {
-                    if (string.IsNullOrWhiteSpace(line))
-                        continue;
+                    double rounded = Math.Round(value, 3);
 
-                    line = line.Trim();
-                    line = line.Replace(',', '.');
-
-                    if (double.TryParse(line, NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
+                    if (Math.Abs(rounded % 1) < 0.00001)
                     {
-                        double rounded = Math.Round(number, 3);
-
-                        if (Math.Abs(Math.Round(rounded) - rounded) < 0.0001)
+                        if (rounded > 0)
                         {
-                            long integerValue = (long)Math.Round(rounded);
-
-                            if (integerValue > 0)
-                            {
-                                positiveSum += integerValue;
-                            }
-                            else if (integerValue < 0)
-                            {
-                                negativeSum += Math.Abs(integerValue);
-                            }
+                            positiveSum += (long)rounded;
+                        }
+                        else if (rounded < 0)
+                        {
+                            negativeSum += Math.Abs((long)rounded);
                         }
                     }
                 }
             }
 
-            double result = positiveSum - negativeSum;
-            return result;
+            return positiveSum - negativeSum;
         }
     }
 }
