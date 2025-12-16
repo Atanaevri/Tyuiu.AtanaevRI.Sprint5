@@ -5,7 +5,7 @@ using tyuiu.cources.programming.interfaces.Sprint5;
 
 namespace Tyuiu.AtanaevRI.Sprint5.Task7.V17.Lib
 {
-    public class DataService : ISprint5Task7V17
+    public class DataService : ISprint5Task7V12
     {
         public string LoadDataAndSave(string path)
         {
@@ -14,8 +14,13 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task7.V17.Lib
             try
             {
                 string content = File.ReadAllText(path, Encoding.Default);
-                string result = content.Replace("нн", "н");
-                File.WriteAllText(outputPath, result, Encoding.Default);
+
+                while (content.Contains("нн"))
+                {
+                    content = content.Replace("нн", "");
+                }
+
+                File.WriteAllText(outputPath, content, Encoding.Default);
                 return outputPath;
             }
             catch (Exception ex)
