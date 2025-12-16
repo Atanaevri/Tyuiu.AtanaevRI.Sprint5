@@ -21,33 +21,38 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task5.V12.Lib
                         continue;
 
                     line = line.Trim();
-                    line = line.Replace(',', '.');
 
-                    if (long.TryParse(line, NumberStyles.Integer, CultureInfo.InvariantCulture, out long intValue))
+                    string normalizedLine = line.Replace(',', '.');
+
+                    if (long.TryParse(normalizedLine, NumberStyles.Integer, CultureInfo.InvariantCulture, out long intValue))
                     {
                         if (intValue > 0)
                             positiveSum += intValue;
                         else if (intValue < 0)
                             negativeSum += intValue;
                     }
-                    else if (double.TryParse(line, NumberStyles.Float, CultureInfo.InvariantCulture, out double doubleValue))
+                    else if (double.TryParse(normalizedLine, NumberStyles.Float, CultureInfo.InvariantCulture, out double doubleValue))
                     {
                         double rounded = Math.Round(doubleValue, 3, MidpointRounding.AwayFromZero);
-                        double fractional = Math.Abs(rounded - Math.Truncate(rounded));
 
-                        if (fractional < 0.0001)
+                        double diff = Math.Abs(rounded - Math.Round(rounded));
+                        if (diff < 0.0001)
                         {
-                            long roundedInt = (long)rounded;
-                            if (roundedInt > 0)
-                                positiveSum += roundedInt;
-                            else if (roundedInt < 0)
-                                negativeSum += roundedInt;
+                            long value = (long)Math.Round(rounded);
+                            if (value > 0)
+                                positiveSum += value;
+                            else if (value < 0)
+                                negativeSum += value;
                         }
                     }
                 }
             }
 
-            return positiveSum + negativeSum;
+            long sumPositive = positiveSum;
+            long sumNegative = Math.Abs(negativeSum);
+            long difference = sumPositive - sumNegative;
+
+            return (double)difference;
         }
     }
 }
