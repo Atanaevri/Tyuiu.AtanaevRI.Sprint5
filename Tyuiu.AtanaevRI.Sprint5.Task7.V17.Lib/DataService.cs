@@ -13,14 +13,9 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task7.V17.Lib
 
             try
             {
-               
                 string content = File.ReadAllText(path, Encoding.Default);
-
-                
                 string result = content.Replace("нн", "н");
-
-          File.WriteAllText(outputPath, result, Encoding.Default);
-
+                File.WriteAllText(outputPath, result, Encoding.Default);
                 return outputPath;
             }
             catch (Exception ex)
