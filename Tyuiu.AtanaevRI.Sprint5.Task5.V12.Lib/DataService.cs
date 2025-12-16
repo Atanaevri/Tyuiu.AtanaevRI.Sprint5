@@ -7,6 +7,7 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task5.V12.Lib
 {
     public class DataService : ISprint5Task5V12
     {
+
         public double LoadFromDataFile(string path)
         {
             double sum = 0;
@@ -20,15 +21,18 @@ namespace Tyuiu.AtanaevRI.Sprint5.Task5.V12.Lib
                     if (string.IsNullOrEmpty(line))
                         continue;
 
-                    if (double.TryParse(line.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
+               
+                    if (long.TryParse(line, out long intValue))
                     {
-                        // Check if the number is essentially an integer (within a small tolerance)
-                        double roundedToNearestInteger = Math.Round(number);
-                        if (Math.Abs(number - roundedToNearestInteger) < 0.000001)
+                        sum += intValue;
+                    }
+                    else if (double.TryParse(line.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double doubleValue))
+                    {
+    
+                        if (Math.Abs(doubleValue % 1) < 0.000001 || Math.Abs(doubleValue % 1) > 0.999999)
                         {
-                            // It's an integer
-                            long intValue = (long)roundedToNearestInteger;
-                            sum += intValue;
+                            long roundedValue = (long)Math.Round(doubleValue);
+                            sum += roundedValue;
                         }
                     }
                 }
